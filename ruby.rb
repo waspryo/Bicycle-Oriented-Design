@@ -149,3 +149,28 @@ record = Struct.new(:english, :math, :history) do
     (english + math + history) / 3.0
   end
 end
+------------------------------------------------------------------------------------------------------------
+class Gear
+  attr_reader :chairning, :cog, :wheel
+
+  def initialize(chairning, cog, rim, tire)
+    @chairning = chairning
+    @cog       = cog
+    @wheel     = Wheel.new(rim, tire)
+  end
+
+  def ratio
+    chairning / cog.to_f
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+
+  Wheel = Struct.new(:rim, :tire) do
+    def diameter
+      rim + (tire * 2)
+    end
+  end
+
+end
