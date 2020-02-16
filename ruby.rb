@@ -313,3 +313,91 @@ class Gear
     ratio * wheel.diameter
   end
 end
+------------------------------------------------------------------------------------------------------------
+fruits = {"banana" => 100, "berry" => 250, "orange" => 90 }
+
+p fruits.fetch("banana")
+p fruits.fetch("berry")
+p fruits.fetch("orange")
+
+
+begin
+  fruits = {"banana" => 100, "berry" => 250, "orange" => 90 }
+  p fruits.fetch("lemon")
+rescue => e
+  p "there is no key at all"
+ensure
+  p e
+end
+------------------------------------------------------------------------------------------------------------
+
+module SomeFramework
+  class Gear
+    attr_reader :chainring, :cog, :wheel
+
+    def initialize(chainring, cog, wheel)
+      @chainring = chainring
+      @cog       = cog
+      @wheel     = wheel
+    end
+
+    def ratio
+      chairning / cog.to_f
+    end
+
+    def gear_inches
+      ratio * wheel.diameter
+    end
+
+    Wheel = Struct.new(:rim, :tire) do
+      def diameter
+        rim + (tire * 2)
+      end
+    end
+
+  end
+end
+
+module GearWrapper
+  def self.gear(args)
+    SomeFramework::Gear.new(args[:chainring],
+                            args[:cog],
+                            wheel[:wheel])
+  end
+end
+------------------------------------------------------------------------------------------------------------
+class Gear
+  attr_reader :chainring, :cog
+
+  def initialize(chainring, cog)
+    @chainring = chainring
+    @cog       = cog
+  end
+
+  def gear_inches(diameter)
+    ratio * diameter
+  end
+
+  def ratio
+    chainring / cog.to_f
+  end
+
+end
+
+class Wheel
+  attr_reader :rim, :tire, :gear
+
+  def initialize(rim, tire, chainring, cog)
+    @rim = rim
+    @tire = tire
+    @gear = Gear.new(chainring, cog)
+  end
+
+  def diameter
+    rim + (tire * 2)
+  end
+
+  def gear_inches
+    gear.gear_inches(diameter)
+  end
+end
