@@ -210,3 +210,68 @@ class Wheel
     diameter * Math::PI
   end
 end
+------------------------------------------------------------------------------------------------------------
+class Gear
+  attr_reader :chairning, :cog, :rim, :tire
+  def initialize(chairning, cog, rim, tire)
+    @chairning = chairning
+    @cog       = cog
+    @rim       = rim
+    @tire      = tire
+  end
+
+  def gear_inches
+    ratio * Wheel.new(rim, tire).diameter
+  end
+
+  def ratio
+    chairning / cog.to_f
+  end
+end
+
+class Wheel
+  attr_reader :rim, :tire
+
+  def initialize(rim, tire)
+    @rim = rim
+    @tire = tire
+  end
+
+  def diameter
+    rim + (tire * 2)
+  end
+
+end
+------------------------------------------------------------------------------------------------------------
+class Gear
+  attr_reader :chainring, :cog, :wheel
+
+  def initialize(chainring, cog, wheel)
+    @chainring = chainring
+    @cog       = cog
+    @wheel     = wheel
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+
+  def ratio
+    chairning / cog.to_f
+  end
+end
+------------------------------------------------------------------------------------------------------------
+class Gear
+  attr_reader :chainring, :cog, :rim, :tire
+
+  def initialize(chainring, cog, rim, tire)
+    @chainringn = chainring
+    @cog        = cog
+    @wheel      = Wheel.new(rim,tire)
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+end
+
