@@ -459,3 +459,63 @@ class Mechanic
 
   end
 end
+------------------------------------------------------------------------------------------------------------
+class Trip
+  attr_reader :bicycles, customers, :vehicle
+
+  def prepare(prepapers)
+    prepares.each { |prepare|
+    case prepare
+    when Mechanic
+      prepare.prepare_bicycles(bicycles)
+    when TripCoodinator
+      prepare.buy_food(customers)
+    when Driver
+      prepare.gas_up(vechicle)
+      prepare.fill_water_tank(vechicle)
+    end
+    }
+  end
+end
+
+class TripCoodinator
+  def buy_food(customers)
+  end
+
+end
+
+class Trip
+  attr_reader :bicycles, :customers, :vechicle
+
+  def prepare(prepares)
+    prepares.each { |prepare|
+      prepare.prepare_trip(self)
+    }
+  end
+end
+
+# 全ての準備者(Prepare)は
+# 'prepare_trip'に応答するダック
+
+class Mechanic
+  def prepare_trip(trip)
+    trip.bicycles.each { |bicycle|
+     prepare_bicycle(bicycle)}
+  end
+end
+
+class TripCoodinator
+
+  def prepare_trip(trip)
+    buy_food(trip.customers)
+  end
+
+end
+
+class Driver
+  def prepare_trip(trip)
+    vechicle = trip.vechicle
+    gas_up(vechicle)
+    fill_water_tank(vechicle)
+  end
+end
