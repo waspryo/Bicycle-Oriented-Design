@@ -401,3 +401,61 @@ class Wheel
     gear.gear_inches(diameter)
   end
 end
+
+
+class ::Emerald::Notifications::Slack::AWordOfBot::Strategy::BroadcastBot
+  ENDPOINT=ENV['SLACK_NOTIFICATION_BROADCAST_SERVICE_COMANY_ENDPOINT'].freeze
+
+    def exec(payload: payload)
+      if ::Emerald::Notifications::Slack::AWordOfBot::Strategy::BroadcastBot::ENDPOINT.blank?
+        ::Rails.logger.warn("Not set SLACK_NOTIFICATION_BROADCAST_SERVICE_COMANY_ENDPOINT. Suspends slack notification processing.")
+        return false
+      end
+      company = payload
+      #
+      uemoto_slack_id = '<@U7BS0AKFF>'
+      minami_slack_id = '<@U6RBMRHT6>'
+      url             = Rails.application.routes.url_helpers.admin_release_url(project.id)
+      text            = "#{uemoto_slack_id} #{minami_slack_id} #{project.company.company_name}様から配信代行の審査申し込みがきています:)<#{url}>"
+      res             = Faraday.post ENV['SLACK_NOTIFICATION_BROADCAST_SERVICE_COMANY_ENDPOINT'], JSON.generate({text: text}),
+                              context_type: "application/json"
+    end
+end
+
+class ::Emerald::Notifications::Slack::AWordOfBot::Context::BroadcastBot
+  attr_reader :strategy
+
+  def initialize strategy:
+    @strategy = strategy
+  end
+
+  def exec()
+    self.strategy.exec()
+  end
+end
+
+class ::Emerald::Notifications::Slack::AWordOfBot::Factory::BroadcastBot
+  def self.create
+    ::Emerald::Notifications::Slack::AWordOfBot::Context::BroadcastBot.new(strategy: ::Emerald::Notifications::Slack::AWordOfBot::Strategy::BroadcastBot.new)
+  end
+end
+
+------------------------------------------------------------------------------------------------------------
+class Trip
+  attr_reader :bicycles :customers, :vehicle
+
+  def prepare(mechanic)
+    mechanic.prepare_bicycles(bicycles)
+  end
+end
+
+class Mechanic
+
+  def prepare_bicycles(bicycles)
+    bicycles.each { |bicycle| prepare_bicycle(bicycle) }
+  end
+
+  def prepare_bicycle(bicycle)
+
+  end
+end
