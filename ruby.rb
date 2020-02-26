@@ -519,3 +519,30 @@ class Driver
     fill_water_tank(vechicle)
   end
 end
+------------------------------------------------------------------------------------------------------------
+class Trip
+  attr_reader :bicycles, :customers, :vehicle
+
+  def prepare(prepares)
+    prepares.each { |prepare|
+      case prepare
+      when Mechanic
+        prepare.prepare_bicycles(bicycles)
+      when TripCoodinator
+        prepare.buy_food(customers)
+      when Driver
+        prepaper.gas_up(vechicle)
+        prepaper.fill_water_tank(vechicle)
+      end
+    }
+  end
+end
+------------------------------------------------------------------------------------------------------------
+if prepare.kind_of?(Mechanic)
+  prepare.prepare_bicycles(bicycle)
+elsif prepare.kind_of?(TripCoodinator)
+  prepare.buy_food(customers)
+elsif prepare.kind_of?(Driver)
+  prepare.gas_up(vechicle)
+  prepare.fill_water_tank(vechicle)
+end
