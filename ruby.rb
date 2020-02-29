@@ -636,3 +636,53 @@ even_numbers = numbers.select { |n| n.even? }
 numbers = [1,2,3,4,5,6]
 non_multiple_of_three = numbers.reject { |n| n % 3 == 0 }
 ------------------------------------------------------------------------------------------------------------
+numbers = [1,2,3,4,5,6]
+even_number = numbers.find { |n| n.even? }
+------------------------------------------------------------------------------------------------------------
+week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+week.inject('Sun') { |res, v| res += v; res }
+------------------------------------------------------------------------------------------------------------
+def liquid?(tempreature)
+  0 <= tempreature && tempreature < 100
+end
+
+liquid?(-1)
+------------------------------------------------------------------------------------------------------------
+def charge(age)
+  case age
+  when 0..5
+    0
+  when 6..12
+    300
+  when 13..18
+    600
+  else
+    1000
+  end
+end
+------------------------------------------------------------------------------------------------------------
+def greeting(*names)
+  "#{names.join('と')}、こんにちは！"
+end
+
+greeting
+------------------------------------------------------------------------------------------------------------
+dimentions = [
+  [10,20],
+  [30,40],
+  [50,60]
+]
+
+areas = []
+
+dimentions.each do |dimention|
+  length = dimention[0]
+  width = dimention[1]
+  areas << length * width
+end
+
+# または
+
+dimentions.each do |length, width|
+  areas << length * width
+end
