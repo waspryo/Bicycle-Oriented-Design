@@ -686,3 +686,33 @@ end
 dimentions.each do |length, width|
   areas << length * width
 end
+
+nums = [1,2,3,4,5]
+sum = 0
+
+num.each {|n; sum|
+  sum = 10
+  sum += n
+
+p sum
+}
+
+numbers = [1,2,3,4]
+sum = 0
+
+numbers.each {
+  |n| sum_value = n.even? ? n * 10 : n
+  sum += sum_value
+}
+
+------------------------------------------------------------------------------------------------------------
+numbers = [1,2,3,4,5]
+sum = 0
+
+
+sum_value = 100
+
+numbers.each { |sum_value|
+  sum += sum_value
+}
+sum
