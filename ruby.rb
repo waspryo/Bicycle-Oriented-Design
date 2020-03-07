@@ -716,3 +716,48 @@ numbers.each { |sum_value|
   sum += sum_value
 }
 sum
+------------------------------------------------------------------------------------------------------------
+def greeting(country)
+  return 'countryを入力してください' if country.nil?
+
+  if country == 'japan'
+    'こんにちは'
+  else
+    'hello'
+  end
+end
+------------------------------------------------------------------------------------------------------------
+def calc_with_break
+  numbers = [1,2,3,4,5,6,7]
+
+  target = nil
+  numbers.shuffle.each {|n|
+    target = n
+    break if n.even?
+  }
+  target * 10
+end
+calc_with_break
+------------------------------------------------------------------------------------------------------------
+def calc_with_break
+  numbers = [1,2,3,4,5,6,7]
+
+  target = nil
+  numbers.shuffle.each {|n|
+    target = n
+    return if n.even?
+  }
+  target * 10
+end
+calc_with_break
+
+[1,2,3].each { |n|
+  puts n
+  return
+}
+------------------------------------------------------------------------------------------------------------
+numbers = [1,2,3,4,5]
+numbers.each {|n|
+  next if n.even?
+  puts n
+}
