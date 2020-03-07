@@ -61,3 +61,36 @@ class Bicycle
   end
 end
 
+class MountainBike < Bicycle
+  attr_reader :front_shock, :rear_shock
+
+  def initialize(args)
+    @front_shock  = args[:front_shock]
+    @rear_shock   = args[:rear_shock]
+    super(args)
+  end
+
+  def spares
+    super.merge(rear_shock: rear_shock)
+  end
+end
+------------------------------------------------------------------------------------------------------------
+class Bicycle
+  # このクラスはもはやからとなった
+  # このコードは RoadBike に継承された
+end
+
+class RoadBike < Bicycle
+  #いまは Bicycleのサブクラス
+  #かつての Bicycleクラスからのコード全て含む
+end
+
+class MountainBike < Bicycle
+  #Bicycleのサブクラスのまま(Bicycleは現在からになっている)
+  #コードは何も変更されていない
+end
+
+------------------------------------------------------------------------------------------------------------
+class ClassName
+
+end
