@@ -91,6 +91,19 @@ class MountainBike < Bicycle
 end
 
 ------------------------------------------------------------------------------------------------------------
-class ClassName
-
+class Bicycle
+  attr_reader :size  # <- RoadBikeから昇格した
+  def initialize(args={})
+    @size = args[:size] # <- RoadBikeから昇格した
+  end
 end
+
+class RoadBike < Bicycle
+  attr_reader :tape_color
+
+  def initialize(args)
+    @tape_color = args[:tape_color]
+    super(args) # <- RoadBikeは’super’を必ず呼ばなければならなくなった
+  end
+end
+------------------------------------------------------------------------------------------------------------
