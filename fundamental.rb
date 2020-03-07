@@ -107,3 +107,31 @@ class RoadBike < Bicycle
   end
 end
 ------------------------------------------------------------------------------------------------------------
+class RoadBike < Bicycle
+  def spares
+    {
+      chain: '10-speed',
+      tire_size: '23',
+      tape_color: tape_color
+    }
+
+  end
+end
+
+class MountainBike < Bicycle
+    def spares
+      super.merge({rear_shock: rear_shock})
+    end
+end
+------------------------------------------------------------------------------------------------------------
+
+class Bicycle
+  attr_reader :size, :chain, :tire_size
+
+  def initialize(args={})
+    @size       args[:size]
+    @chain      args[:chain]
+    @tire_size  args[:tire_size]
+  end # 共通の内容はスーパークラスに初期値としてもたせる
+end
+------------------------------------------------------------------------------------------------------------
