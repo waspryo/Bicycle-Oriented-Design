@@ -237,6 +237,79 @@ end
 
 buy_burger({'drink' => true, 'potato' => false}, 'fish')
 buy_burger('drink' => true, 'potato' => false, 'fish')
+------------------------------------------------------------------------------------------------------------
+
+arr = ['Japan', 'America', 'Germany', 'Canada', 'India', 'China', 'France']
+ary.last
+arr.select{|a|a.include?("France")}
+ary.grep()
+
+
+arr = ['Japan', 'America', 'Germany', 'Canada', 'India']
+
+for i in do
+  if arr[i] == 'Japan'
+    puts "Japn is exist!!"
+  end
+end
+
+
+
+arr = ['Japan', 'America', 'Germany', 'Canada', 'India']
+
+m = "America"
+index = 0
+if arr.index(m) then
+  a = 1
+else
+  a = 0
+end
+
+if index < a then
+  puts m + 'が見つかりました'
+else
+  puts m + "見つかりませんでした。"
+end
+
+
+
+for i in arr do
+  if i == 'Canada'
+     p m + " found"
+  else
+     p m + ' Not found'
+  end
+end
+
+------------------------------------------------------------------------------------------------------------
+
+ary = [ ["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"] ]
+for i in ary do
+  puts i
+end
+
+
+ary = [ ["90", "90", "90"], ["70", "70", "70"], ["50", "50", "50"] ]
+for(k = 0, k < ary.length, k++) {
+  total = 0
+  for(i = 0, i < ary.[k].length, += i  ) {
+    total =  total + ary[k][i]
+  }
+  puts total
+}
+
+
+
+
+ary = [ ["90", "90", "90"], ["70", "70", "70"], ["50", "50", "50"] ]
+
+for k in ary do
+  total = 0
+  for i in k do
+      total = total += i.to_i
+    end
+    puts total
+end
 
 
 
@@ -245,7 +318,29 @@ buy_burger('drink' => true, 'potato' => false, 'fish')
 
 
 
+ary = [ ["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"] ]
+ary.inject([]) { |x, v| x += v; x }
+
+numbers = [1, 2, 3, 4, 5]
+sum = 0
+numbers.each { |n| sum += n }
 
 
 
+二次元配列の問題 1
 
+ary = [ ["90", "90", "90"], ["70", "70", "70"], ["50", "50", "50"] ]
+# 文字列を数字に変換する
+b = ary.map{|a|a.map{|a|a.to_i}}
+# 要素の合計値
+c = b.map(&:sum)
+puts c
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+arr = [[:japan, 'yen'], [:us, "doller"],[:Phils, 'Peso']]
+
+'apple'.respond_to?('include?')
+'apple'.respond_to?(:include?)
