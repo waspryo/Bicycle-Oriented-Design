@@ -344,3 +344,32 @@ arr = [[:japan, 'yen'], [:us, "doller"],[:Phils, 'Peso']]
 
 'apple'.respond_to?('include?')
 'apple'.respond_to?(:include?)
+
+'apple'.include?('pp')
+
+def find_currency(country)
+  currencies = {japan: 'yen', us: 'USD', phils: 'peso'}
+  currencies[country]
+end
+
+def show_cuurency(country)
+  currency = find_currency(country)
+
+  if currency
+    currency.upcase
+  end
+end
+
+def show_currency(country)
+  if currency = find_currency(country)
+    currency.upcase
+  end
+end
+
+def show_currency(country)
+  if currency = find_currency(country)
+   currency&.upcase
+  elsif  !currency
+    'hey there is no data'
+  end
+end
