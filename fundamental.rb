@@ -289,10 +289,11 @@ for i in ary do
 end
 
 
-ary = [ ["90", "90", "90"], ["70", "70", "70"], ["50", "50", "50"] ]
+ary = [ [1,2,3,4,5,6,7,8,9,10] ]
+ary = [ ["90", "90", "90","90"], ["70", "70", "70"], ["50", "50", "50"] ]
 for(k = 0, k < ary.length, k++) {
   total = 0
-  for(i = 0, i < ary.[k].length, += i  ) {
+  for(i = 0, i < ary[k].length, i ++  ) {
     total =  total + ary[k][i]
   }
   puts total
@@ -373,3 +374,39 @@ def show_currency(country)
     'hey there is no data'
   end
 end
+
+------------------------------------------------------------------------------------------------------------
+m = [ {uuid: 'nice', signed_image_url: 'http', graph_type: 'photo'}, {uuid: 'OMG', signed_image_url: 'http://www', graph_type: 'video'} ]
+
+def user_exists?
+  user = find_user
+
+  if user
+  true
+  else
+    false
+  end
+end
+
+def name
+  !!find_user
+end
+------------------------------------------------------------------------------------------------------------
+old_syntax = <<TEXT
+{
+  :name => 'Alice',
+  :age=> 20,
+  :gender => :female
+}
+TEXT
+
+convert_hash_syntac(old_syntax)
+------------------------------------------------------------------------------------------------------------
+text = <<TEXT
+i love Ruby.
+Python is a great laungage.
+Java and JavaScript are diffrent.
+TEXT
+
+text.scan(/[A-Z][A-Za-z]+/)
+------------------------------------------------------------------------------------------------------------
