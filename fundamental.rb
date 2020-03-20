@@ -562,3 +562,27 @@ text.split
 
 text = '123,456-789'
 text.split(/,|-/)
+
+
+text = '123,456-789'
+text.gsub(',', ':')
+
+text = '誕生日は1977年07月18日です'
+
+text.gsub(
+  /(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日/,
+  '\k<year>-\k<month>-\k<day>'
+)
+
+text = '123,456-789'
+
+hash = {',' => ':','-' => '/'}
+text.gsub(/,|-/, hash)
+
+text = '123,456-789'
+text.gsub(/,|-/) { |v| v == ',' ? ':': '/'}
+
+
+text = '123,456-789'
+text.gsub!(/,|-/, ':')
+text
