@@ -490,4 +490,75 @@ class MountainBike < Bicycle
   end
 
 end
+
+class RecumbentBike < Bicycle
+  def default_chain
+    '9-speed'
+  end
+end
 -------------------------------------------------------
+class RecumbentBike < Bicycle
+  def default_chain
+    '9-speed'
+  end
+end
+
+-------------------------------------------------------
+class Bicycle
+  attr_reader :size, :chain, :tire_size
+
+  def initialize(args={})
+    @size         = args[:size]
+    @chain        = args[:chain]
+    @tire_size    = args[:tire_size]
+  end
+end
+
+
+------------------------------------------------------------------------------------------------------------
+
+'123 456 789'.scan(/\d+/)
+
+'1991年07月18日 2020年03月20日'.scan(/(\d+)年(\d+)月(\d+)日/)
+
+'1991年08月19日 2020年03月21日'.scan(/(?:\d+)年(?:\d+)月(?:\d+)日/)
+
+
+'1991年08月19日 2020年03月21日'.scan(/\d+年\d+月\d+日/)
+
+text = '郵便番号は123-4567です'
+
+text[/\d{3}-\d{4}/]
+
+text = '1234-5678 9876-5432'
+text[/\d{4}-\d{4}/]
+
+text = '私の誕生は1997年08月19日です'
+text[/(\d+)年(\d+)月(\d+)日/]
+
+text = '私の誕生は1997年08月19日です'
+text[/(\d+)年(\d+)月(\d+)日/, 2]
+
+text = '誕生日は1977年07月18日です'
+text[/(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日/, :day]
+
+text = '誕生日は1977年07月18日です'
+text[/(?<year>\d+)年(?<month>\d+)月(?<day>\d+)日/, 'day']
+
+text = '郵便番号は123-4567です'
+text.slice(/\d{3}-\d{4}/)
+
+
+text = '誕生日は1977年07月18日です'
+text.slice(/(\d+)年(\d+)月(\d+)日/, 3)
+
+text = '郵便番号は123-4567です'
+text.slice!(/\d{3}-\d{4}/)
+text
+
+text = '123,456-789'
+text.split
+# text.split(',')
+
+text = '123,456-789'
+text.split(/,|-/)
