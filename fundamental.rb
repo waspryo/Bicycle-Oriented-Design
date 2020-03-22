@@ -682,7 +682,7 @@ regexp = /
   /\d{3}-\d{4}/.match?('123-4567')
 
   '123-4567'.match?(/\d{3}-\d{4]/)
-
+------------------------------------------------------------------------------------------------------------
 # 改札機のオブジェクトの作成
 umeda   = Gate.new(:umeda)
 mikuni  = Gate.new(:mikuni)
@@ -691,8 +691,78 @@ mikuni  = Gate.new(:mikuni)
 ticket = Ticket.new(150)
 umeda.enter(ticket)
 mikuni.exit(ticket) #=> false
-
+-------------------------------------------------------
 # 190円の切符を購入して梅田で乗車し、三国で下車する(OK)
 ticket = Ticket.new(190)
 umeda.enter(ticket)
 mikuni.exit.(ticket) #=> true
+
+users = []
+users << {first_name: 'Alice', last_name: 'Ruby', age: 20}
+users << {first_name: 'John', last_name: 'Corner', age: 17}
+
+
+users.each { |user| puts "氏名 #{user[:first_name]} #{user[:last_name]}, 年齢 #{user[:age]}" }
+
+users.inject([]) { |v, x| v += x puts "氏名: #{v[:first_name]} #{v[:last_name]}, 年齢: #{v[:age]}" }
+-------------------------------------------------------
+users = []
+users << {first_name: 'Alice', last_name: 'Ruby', age: 20}
+users << {first_name: 'John', last_name: 'Corner', age: 17}
+
+def full_name(u)
+  "#{u[:first_name]} #{u[:full_name]}"
+end
+
+users.each { |u| puts "#{full_name(u)}, 年齢: #{u[:age]}" }
+
+users = []
+users << {first_name: 'Alice', last_name: 'Ruby', age: 20}
+users << {first_name: 'John', last_name: 'Corner', age: 17}
+
+user[0][:first_name]
+users[0][:first_nameadaew]
+# 勝手キーを追加できたり変更したりできるから[脆くて壊れやすいプログラムになりがち]
+users[0][:country] = 'japan'
+-------------------------------------------------------
+class User
+  attr_reader :first_name, :last_name, :age
+
+  def initialize(first_name, last_name, age)
+
+    @first_name = first_name
+    @last_name  = last_name
+    @age        = age
+
+  end
+
+  def full_name(user)
+    "#{user.first_name} #{user.last_name}"
+  end
+
+end
+
+users = []
+users << User.new('Alice', 'baker', 24)
+users << User.new('David', 'gatter', 32)
+
+users.each {|user| puts "氏名 #{full_name(user)}, 年齢#{user.age}"}
+-------------------------------------------------------
+alice = User.new('Alice', 'billy', 17)
+bob = User.new('Bob', 'dulan', 23)
+
+class User
+  attr_accessor :first_name
+
+end
+
+user = User.new('alice', 'ruby', 20)
+user.first_name
+
+user.first_name = 'アリス'
+user.first_name
+-------------------------------------------------------
+-------------------------------------------------------
+-------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------
