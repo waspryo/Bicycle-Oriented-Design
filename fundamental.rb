@@ -762,7 +762,95 @@ user.first_name
 user.first_name = 'アリス'
 user.first_name
 -------------------------------------------------------
+class User
+
+def initialize
+  puts "初期化"
+  end
+end
+
+class User
+
+  def initialize(name, age)
+  puts "name: #{name}, age #{age}"
+  end
+end
 -------------------------------------------------------
+class Greeting
+
+  def say_hi(hello)
+    puts hello
+  end
+end
+-------------------------------------------------------
+class User
+
+  def initialize(name)
+  @name = name
+  end
+
+  def hello
+    "Hello, I am #{@name}"
+  end
+
+end
+
+
+class User
+
+
+  def hello
+    shuffled_name = @name.chars.shuffle.join
+    "Hello, i am #{shuffled_name}."
+  end
+end
+
+class User
+
+  def initialize(name)
+    # @name = name
+  end
+
+  def hello
+    "Hello, i am #{@name}"
+  end
+
+end
+-------------------------------------------------------
+class User
+
+  def initialize(name)
+    @name = name
+  end
+
+  def name
+    @name
+  end
+end
+
+
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  def name
+    @name
+  end
+
+  def name=(value)
+    @name = value
+  end
+end
+
+
+class User
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+end
 -------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------
