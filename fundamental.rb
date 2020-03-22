@@ -644,3 +644,55 @@ regexp = /
   \d{4}
   /x
   '123-4567' =~ regexp
+
+  regexp = /
+    \d{3}
+    \  #半角スペースで区切る
+    \d{4}
+  /x
+  '123 4567' =~ regexp
+
+  pattern = << TEXT
+    \d{3} # 郵便番号の先頭3桁
+    - #区切り文字のハイフン
+    \d{4}
+  TEXT
+
+  regexp = Regexp.new(pattern, Regexp::EXTENDED)
+  '123-4567'
+
+  "HELLO\nBYE" =~ /Hello.Bye/im
+
+  regexp = Regexp.new('Hello.Bye', Regexp::IGNORECASE | Regexp::MULTILINE)
+  "HELLO\nBYE" =~ regexp
+
+  text = '私の誕生日は1991年07月18日です。'
+
+  text =~ /(\d+)年(\d+)月(\d+)日/
+
+  $~
+
+  text = '誕生日は1977年07月18日です'
+  text =~ /(\d+)年(\d+)月(\d+)日/
+
+  Regexp.last_match
+
+  Regexp.last_match(0)
+
+  /\d{3}-\d{4}/.match?('123-4567')
+
+  '123-4567'.match?(/\d{3}-\d{4]/)
+
+# 改札機のオブジェクトの作成
+umeda   = Gate.new(:umeda)
+mikuni  = Gate.new(:mikuni)
+
+# 150円の切符を購入して梅田で乗車し、三国で下車する(NG)
+ticket = Ticket.new(150)
+umeda.enter(ticket)
+mikuni.exit(ticket) #=> false
+
+# 190円の切符を購入して梅田で乗車し、三国で下車する(OK)
+ticket = Ticket.new(190)
+umeda.enter(ticket)
+mikuni.exit.(ticket) #=> true
