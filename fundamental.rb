@@ -586,3 +586,61 @@ text.gsub(/,|-/) { |v| v == ',' ? ':': '/'}
 text = '123,456-789'
 text.gsub!(/,|-/, ':')
 text
+
+old_syntax = <<TEXT
+{
+  :name => 'Alice',
+  :age => 20,
+  :gender => :female
+}
+TEXT
+
+convert_hash_syntaxt(old_syntax)
+
+def convert_hash_syntax(old_syntax)
+  old_syntax.gsub(/:(\w+) *=> */,'\1:')
+end
+
+Regexp.new('\d{3}-\d{4}')
+
+/http:\/\/example\.com/
+
+%r!http://example\.com!
+
+%r{http://example\.com}
+
+pattern = '\d{3}-\d{4}'
+
+'123-4567' =~ /#{pattern}/
+
+text = '03-1234-5678'
+
+case text
+
+when /^\d{3}-\d{4}$/
+  puts '郵便番号です'
+when /^\d{4}\/d{1,2}\/\d{1,2}$/
+  puts '日付です'
+when /^\d+^\d+-\d+$/
+  puts '電話番号です'
+end
+
+'HELLO' =~ /hello/i
+
+'HELLO' =~ %r{hello}i
+
+regexp = Regexp.new('hello', Regexp::IGNORECASE)
+'HELLO' =~ regexp
+
+"Hello\nBye" =~ /Hello.Bey/
+"Hello\nBye" =~ /Hello.Bye/m
+
+regexp = Regexp.new('Hello.Bye', Regexp::MULTILINE)
+"Hello\nBye" =~ regexp
+
+regexp = /
+  \d{3} # 郵便番号先頭3桁
+  -
+  \d{4}
+  /x
+  '123-4567' =~ regexp
