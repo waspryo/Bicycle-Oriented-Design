@@ -852,5 +852,231 @@ class User
   end
 end
 -------------------------------------------------------
+class User
+  attr_reader :name
 
+  def initialize(name)
+    @name = name
+  end
+
+end
+
+class User
+  attr_writer :name
+
+  def initialize(name)
+    @name = name
+  end
+
+end
+-------------------------------------------------------
+class User
+  attr_accessor :name, :age
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+end
+-------------------------------------------------------
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  def hello
+    "Hello, I am #{@name}"
+  end
+end
+-------------------------------------------------------
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  def self.create_users(names)
+    names.map {|name|
+      User.new(name)
+    }
+  end
+  def hello
+    "Hello, i am #{@name}"
+  end
+
+end
+
+names = ['bob', 'Jane', 'alice']
+
+users = User.create_users(names)
+
+users.each {|user|
+  puts user.hello
+}
+
+-------------------------------------------------------
+class Product
+  DEFAULT_PRICE = 0
+
+  attr_reader :name, :price
+
+  def initialize(name, price)
+    @name = name
+    @price = price
+  end
+end
+
+class Product
+  DEFAULT_PRICE = 0
+  def self.default_price
+    DEFAULT_PRICE
+  end
+
+  def default_price
+    DEFAULT_PRICE
+
+  end
+end
+------------------------------------------------------------------------------------------------------------
+class Gate
+
+  def initialize(name)
+    @name = name
+  end
+
+  def exter(ticket)
+    ticket.stamp
+  end
+
+  def enter(ticket)
+  end
+
+end
+
+class Ticket
+  def initialize(fare)
+    @fare = fare
+  end
+end
+
+
+-------------------------------------------------------
+class User
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def hello
+    # selfなしでnameメソッドを呼ぶ
+    "Hello, i am #{name}"
+  end
+
+  def hi
+    # self付きでnameメソッドを呼ぶ
+    "hi, i am #{self.name}"
+  end
+
+  def my_name
+    # 直接インスタンス変数の@nameにアクセスする
+    "My name is #{@name}"
+  end
+end
+-------------------------------------------------------
+class User
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def rename_to_bob
+    name = 'Bob'
+  end
+
+  def rename_to_john
+    self.name = 'John'
+  end
+
+  def rename_to_dave
+    @name = 'Dave'
+  end
+
+end
+
+class Foo
+  puts "クラス構文の直下のself: #{self}"
+
+  def self.bar
+  puts "クラスメソッドないのself: #{self}"
+  end
+
+  def baz
+  puts "インスタンスメソッド内のself: #{self}"
+  end
+end
+
+class Foo
+  def self.bar
+    self.baz
+  end
+
+  def baz
+  self.bar
+  end
+end
+-------------------------------------------------------
+class Foo
+  3.times do
+    puts 'Hello'
+  end
+
+  def self.bar
+    puts 'hello'
+  end
+
+  self.bar
+end
+-------------------------------------------------------
+class Product
+  attr_reader :name, :price
+
+  def initialize(name, price)
+    @name = name
+    @price = price
+  end
+
+  def self.format_price(price)
+    "#{price}円"
+  end
+
+  def to_s
+    formatted_price = Product.format_price(price)
+    "name: #{name}, price: #{formatted_price}"
+
+  end
+end
+
+class User
+
+end
+-------------------------------------------------------
+class Product
+  attr_reader :name, :price
+
+  def initialize(name, price)
+    @name = name
+    @price = price
+  end
+end
+
+class DVD < Product
+  attr_reader :running_time
+
+  def initialize(name, price, running_time)
+    @name = name
+    @price = price
+    @running_time = running_time
+  end
+end
 ------------------------------------------------------------------------------------------------------------
