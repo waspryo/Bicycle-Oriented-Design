@@ -1200,5 +1200,42 @@ class User
 end
 
 user = User.new
+-------------------------------------------------------
+class Product
+  private
+
+  def name
+    'A great movie'
+  end
+end
+
+class DVD < Product
+  def to_s
+    "name: #{name}"
+  end
+end
+
+-------------------------------------------------------
+class Product
+  def to_s
+    "name: #{name}"
+  end
+
+  private
+
+  def name
+    'A great movie'
+  end
+end
+
+class DVD < Product
+  private
+  def name
+    'An awsome film'
+  end
+end
+
+
+
 
 ------------------------------------------------------------------------------------------------------------
