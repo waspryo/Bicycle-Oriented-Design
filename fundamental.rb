@@ -1142,4 +1142,63 @@ end
 class Bar < Foo
 
 end
+
+-------------------------------------------------------
+@delivery_content_collection {
+  enable_content: [ "instagram_music” ],
+  enable_content: [ "xxxx_music” ],
+  values: [
+      { code: “instagram_music” ,
+        values [artist: “xxx” , music_name: “yyy"]
+      },
+      { code: "xxx_music" ,
+        values [x: “xxx”, y: “yyy”, z: “zzz"]
+      }
+    ]
+  }
+  -------------------------------------------------------
+  class User
+    # デフォルトはpublic
+    def hello
+      'Hello!'
+    end
+  end
+  -------------------------------------------------------
+  class User
+    # ここから下で定義されたメソッドはprivate
+
+    private
+    def hello
+      'Hello!'
+    end
+  end
+
+  -------------------------------------------------------
+class User
+  def hello
+    "Hello, I am #{self.name}"
+  end
+
+  private
+  def name
+    'Alice'
+  end
+end
+-------------------------------------------------------
+class User
+
+  def hello
+    "HEllo, i am #{name}"
+  end
+
+  private
+
+  def name
+    'Alice'
+  end
+
+end
+
+user = User.new
+
 ------------------------------------------------------------------------------------------------------------
