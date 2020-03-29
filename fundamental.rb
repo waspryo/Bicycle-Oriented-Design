@@ -1351,6 +1351,108 @@ class Product
   DEFAULT_PRICE = 1000
 end
 
+class Product
+  NAME = 'A product'
+  SOME_NAMES = ['FOO', 'Bar', 'Baz']
+  SOME_PRICES = {'Foo' => 100, 'Bar' => 2000, 'Baz' => 3000}
+end
+
+class Product
+  SOME_NAMES = ['Foo', 'Bar', 'Baz'].freeze
+
+  def self.names_without_foo(names = SOME_NAMES)
+    names.delete('Foo')
+    names
+  end
+end
+
+class Product
+  SOME_NAMES = ['Foo'.freeze, 'Bar'.freeze, 'Baz'.freeze].freeze
+end
+
+SOME_NAMES = ['Foo', 'Bar', 'Baz'].map(&:freeze).freeze
+
+class Product
+  SOME_VALUE = 0
+  SOME_TYPE = :foo
+  SOME_FLAG = true
+end
+-------------------------------------------------------
+class Product
+  #クラスインスタンス変数
+  @name = 'Product'
+
+  def self.name
+    # クラスインスタンス変数
+    @name
+  end
+
+  def initialize(name)
+    # インスタンス変数
+    @name = name
+  end
+
+  def name
+    # インスタンス変数
+    @name
+  end
+end
+
+class DVD < Product
+  @name = 'DVD'
+
+  def self.name
+    @name
+  end
+
+  def upcase_name
+    @name.upcase
+  end
+end
 
 
+-------------------------------------------------------
+class Product
+  @@name = 'Product'
+
+  def self.name
+    @@name
+  end
+
+  def initialize(name)
+    @@name = name
+  end
+
+  def name
+    @@name
+  end
+end
+
+class DVD < Product
+  @@name = 'DVD'
+
+  def self.name
+    @@name
+  end
+
+  def upcase_name
+    @@name.upcase
+  end
+end
+-------------------------------------------------------
+$program_name = 'Awsome program'
+
+class Program
+  def initialize(name)
+    $program_name = name
+  end
+
+  def self.name
+    $program_name
+  end
+
+  def name
+    $program_name
+  end
+end
 ------------------------------------------------------------------------------------------------------------
