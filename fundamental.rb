@@ -1337,5 +1337,20 @@ class Child < Parent
     "#{@hour}.#{@minute}.#{@second}"
   end
 end
+-------------------------------------------------------
+class Product
+  DEFAULT_PRICE = 0
+
+  private_constant :DEFAULT_PRICE
+end
+
+class Product
+  DEFAULT_PRICE = 0
+
+  freeze
+  DEFAULT_PRICE = 1000
+end
+
+
 
 ------------------------------------------------------------------------------------------------------------
