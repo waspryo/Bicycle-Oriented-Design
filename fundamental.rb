@@ -1234,8 +1234,51 @@ class DVD < Product
     'An awsome film'
   end
 end
+-------------------------------------------------------
+
+class User
+  private
+  def self.hello
+    'Hello!'
+  end
+end
 
 
+class User
 
+  class << self
+    private
+
+    def hello
+    'hello!'
+    end
+  end
+
+end
+
+class User
+  def self.hello
+    'Hello'
+  end
+
+  private_class_method :hello
+end
+
+class User
+  def foo
+    'foo'
+  end
+
+  def bar
+    'bar'
+  end
+
+  private :foo, :bar
+
+  def baz
+    'baz'
+  end
+end
+-------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------
