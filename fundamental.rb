@@ -1455,4 +1455,38 @@ class Program
     $program_name
   end
 end
+-------------------------------------------------------
+
+class User
+  def hello
+    'Hello'
+  end
+
+  alias greeting hello
+end
+-------------------------------------------------------
+class User
+  undef freeze
+end
+
+class User
+  class BloodType
+    attr_reader :type
+
+    def initialize(type)
+      @type = type
+    end
+  end
+end
+-------------------------------------------------------
+class User
+  private class BloodType
+  end
+end
+-------------------------------------------------------
+class User
+  def name=(value)
+    @name = value
+  end
+end
 ------------------------------------------------------------------------------------------------------------
