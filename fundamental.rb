@@ -1489,4 +1489,70 @@ class User
     @name = value
   end
 end
+
+class Product
+  attr_reader :code, :name
+
+  def initialize(code, name)
+    @code = code
+    @name = name
+  end
+end
+
+class Product
+
+  def ==(other)
+    if other.is_a?(Product)
+
+      code == other.code
+
+    else
+      false
+    end
+  end
+end
+-------------------------------------------------------
+a = 'abc'
+b = 'abc'
+a.equal?
+-------------------------------------------------------
+h = { 1 => 'Integer', 1.0 => 'Float' }
+-------------------------------------------------------
+a = 'japan'
+b = 'japan'
+-------------------------------------------------------
+text = '03-1234-5678'
+
+case text
+  when /^\d{3}-\d{4}$/
+    puts 'it is post code'
+  when /^\d{4}\/\d{1,2}\/\d{1,2}$/
+    puts 'it is date'
+  when /^\d+-\d+-\d+$/
+    puts 'it is phone number'
+end
+-------------------------------------------------------
+value = [1,2,3]
+
+case value
+when String
+  puts '文字列です'
+when Array
+  puts '配列です'
+when  Hash
+  puts 'ハッシュです'
+end
+
+name = 'John'
+
+case name
+when  'Mike'
+  puts 'he is Mike'
+when 'Jane'
+  puts 'She is Jane'
+when 'John'
+  puts "He is the one who i'm looking for"
+end
+-------------------------------------------------------
+
 ------------------------------------------------------------------------------------------------------------
