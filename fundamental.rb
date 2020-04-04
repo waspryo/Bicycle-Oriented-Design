@@ -1619,4 +1619,114 @@ class User
     "#{hello_original}じゃなくて、#{@name}さん、こんにちは！"
   end
 end
+-------------------------------------------------------
+alice = 'I am Alice'
+bob = 'I am Bob'
+
+def alice.shuffle
+  chars.shuffle.join
+end
+
+n = 1
+
+def n.foo
+  'foo'
+end
+
+sym = :alice
+def sym.bar
+  'bar'
+end
+
+alice = 'I am Alice'
+
+class << alice
+  def shuffle
+    chars.shuffle.join
+  end
+end
+
+class User
+  def self.hello
+    'Hello'
+  end
+end
+
+class ClassName
+
+end
+
+
+class User
+  def self.hello
+    'Hello'
+  end
+
+  class << self
+    def h1
+      'Hi'
+    end
+  end
+end
+
+alice = 'I am Alice'
+
+def alice.hello
+  'hello'
+end
+
+class << alice
+  def hi
+    'hi'
+  end
+end
+
+
+class User
+end
+
+def User.hello
+  'Hello'
+end
+
+class << User
+  def hi
+    'Hi'
+  end
+end
+-------------------------------------------------------
+def display_name(object)
+  puts "Name is <<#{object.name}>>"
+end
+
+class User
+  def name
+    'Alice'
+  end
+end
+
+class Product
+  def name
+    'A great movie'
+  end
+end
+
+class Product
+  def initialize(name, price)
+    @name = name
+    @price = price
+  end
+
+  def display_text
+
+    stock = stock? ? 'あり': 'なし'
+    "商品名: #{@name} 価格: #{@price}円 在庫： #{stock}"
+  end
+end
+
+class DVD < Product
+  def stock?
+
+  end
+end
 ------------------------------------------------------------------------------------------------------------
