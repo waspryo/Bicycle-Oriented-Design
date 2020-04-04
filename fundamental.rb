@@ -1068,6 +1068,14 @@ class Product
     @name = name
     @price = price
   end
+
+  def product_name
+    @name
+  end
+
+  def product_price
+    @price
+  end
 end
 
 class DVD < Product
@@ -1554,5 +1562,61 @@ when 'John'
   puts "He is the one who i'm looking for"
 end
 -------------------------------------------------------
+class MyString < String
 
+end
+
+class MyArray < Array
+
+end
+
+class String
+  def shuffle
+    chars.shuffle.join
+  end
+end
+
+class String
+  def shuffle
+    chars.shuffle
+  end
+end
+-------------------------------------------------------
+'MySrting'.underscore
+numbers = [1,2,3]
+name = ['John','Mike','Alice']
+-------------------------------------------------------
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  def hello
+    "hello, #{@name}"
+  end
+end
+
+class User
+  def hello
+    "#{@name}さん、こんにちは！"
+  end
+end
+
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  def hello
+    "Hello, #{@name}!"
+  end
+end
+
+class User
+  alias hello_original hello
+
+  def hello
+    "#{hello_original}じゃなくて、#{@name}さん、こんにちは！"
+  end
+end
 ------------------------------------------------------------------------------------------------------------
