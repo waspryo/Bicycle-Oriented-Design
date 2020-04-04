@@ -1726,7 +1726,38 @@ end
 
 class DVD < Product
   def stock?
-
+    true
   end
 end
+
+class Product
+  def stock?
+  raise 'must implement stock? in subclass'
+  end
+end
+-------------------------------------------------------
+s = 'Alice'
+
+s.respond_to?(:split)
+
+s.respond_to?(:name)
+
+def display_name(obj)
+  if obj.respond_to?(:name)
+    puts "Name is <<#{obj.name}>>"
+  else
+    puts 'No name'
+  end
+end
+
+def add_ten(n)
+  n.to_i + 10
+end
+
+add_ten(1)
+
+def add_numbers(a = 0, b = 0)
+  a.to_i + b.to_i
+end
+
 ------------------------------------------------------------------------------------------------------------
