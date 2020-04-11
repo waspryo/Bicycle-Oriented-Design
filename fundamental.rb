@@ -1902,10 +1902,41 @@ class Bank
   COUNTRIES = ({'Japan' => 'yen', 'US' => 'dollar', 'India' => 'rupee'}).freeze
 end
 
-
 c.each { |res, row| a = ('yen').present?;}
 -------------------------------------------------------
 country = 'US'
 hash = {'japan' => 'yen', country => 'dollar'}
+
+module Loggable
+
+end
+
+class Product
+  include Loggable
+end
+
+module Taggable
+  def price
+    "#{price}円"
+  end
+end
+
+class Product
+  include Taggable
+
+  def price
+    1000
+  end
+end
+
+module Taggable
+  def price_tag
+    # この場合はProductクラスのpriceメソッドを呼んでいる
+    "#{self.price}円"
+  end
+end
+
+
+-------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------
