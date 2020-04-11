@@ -1760,4 +1760,152 @@ def add_numbers(a = 0, b = 0)
   a.to_i + b.to_i
 end
 
+
+
+------------------------------------------------------------------------------------------------------------
+# Module
+class Team
+  COUNTRIES = ['Japan', 'US', 'India'].freeze
+end
+
+class Team
+  COUNTRIES = deep_freeze(['Japan', 'US', 'India'])
+end
+
+Team::COUNTRIES.frozen?
+Team::COUNTRIES.all? { |c|c.frozen? }
+
+class Bank
+  CURRENCIES = ({'japan' => 'yen', 'US' => 'doller', 'India' => 'rupee'})
+end
+
+a = [1,2,3,4,5]
+
+
+-------------------------------------------------------
+module Greeter
+  def hello
+    'hello'
+  end
+end
+
+class Product
+  def title
+    log 'title called'
+    'A great movie'
+  end
+
+  private
+
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+class User
+  def name
+    log 'name is called'
+    'Alice'
+  end
+
+  private
+
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
+module Loggable
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
+class Product
+  include Loggable
+
+  def title
+    log 'title is called'
+    'A great movie'
+  end
+end
+class User
+  include Loggable
+
+  def name
+    log 'name is  called'
+    'Alice'
+  end
+end
+-------------------------------------------------------
+
+module Loggable
+  private
+
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
+class Product
+  include Loggable
+
+  def title
+    log 'title is called'
+    'A great movie'
+  end
+end
+-------------------------------------------------------
+module Loggable
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
+class Product
+  extend Loggable
+
+  def self.create_products(names)
+    log 'create_products is called'
+  end
+end
+
+Product.create_products([])
+
+class Product
+  extend Loggable
+
+  log 'Defined Product class'
+end
+
+class Team
+  COUNTRIES = (['Japan', 'US', 'India'])
+end
+
+class Bank
+  CURRENCIES = ({'Japan' => 'yen', 'US' => 'dollar', 'India' => 'rupee'}).deep_freeze
+end
+
+module DeepFreezable
+  def (array_or_hash).deep_freeze
+  end
+end
+
+class Team
+  extend  DeepFreezable
+
+  COUNTRIES = (['Japan', 'US', 'India']).deep_freeze
+end
+
+class Bank
+  extend DeepFreezable
+
+  COUNTRIES = ({'Japan' => 'yen', 'US' => 'dollar', 'India' => 'rupee'}).freeze
+end
+
+
+c.each { |res, row| a = ('yen').present?;}
+-------------------------------------------------------
+country = 'US'
+hash = {'japan' => 'yen', country => 'dollar'}
+
 ------------------------------------------------------------------------------------------------------------
