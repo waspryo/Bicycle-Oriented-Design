@@ -2012,4 +2012,107 @@ module Loggable
     puts "[LOG] #{text}"
   end
 end
+
+-------------------------------------------------------
+class Second
+  def initialize(player, uniform_number)
+    @player = player
+    @uniform_number = uniform_number
+  end
+
+  def call_name
+    p "he is #{@player}"
+  end
+end
+
+class Second
+  def initialize(digits)
+    @digits = digits
+  end
+end
+
+module Baseball
+  class Second
+    def initialize(player, uniform_number)
+      @player = player
+      @uniform_number = uniform_number
+    end
+  end
+end
+
+module Clock
+  class Second
+    def initialize(digits)
+      @digits = digits
+    end
+  end
+end
+
+module Baseball
+end
+
+class Baseball::Second
+  def initialize(player,uniform_number)
+    @player = player
+    @uniform_number = uniform_number
+  end
+end
+-------------------------------------------------------
+class Second
+  def initialize(player, uniform_number)
+    @player = player
+    @uniform_number = uniform_number
+  end
+end
+
+module Clock
+  class Second
+    def initialize(digits)
+    @digits = digits
+    # トップレベルのSecondクラスを参照する場合には::をクラス、モジュール名の前に付ける
+    @baseball_second = ::Second.new('Clock', 10)
+    end
+  end
+end
+-------------------------------------------------------
+module Loggable
+  def self.log(text)
+    puts "[LOG] #{text}"
+  end
+end
+
+module Loggable
+  class << self
+    def log(text)
+      puts "[LOG] #{text}"
+    end
+  end
+end
+-------------------------------------------------------
+module Loggable
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+
+  module_function :log
+end
+
+class Product
+  include Loggable
+
+  def title
+    log 'title is called'
+    'A great movie'
+  end
+end
+-------------------------------------------------------
+module Loggable
+  PREFIX = '[LOG]'.freeze
+
+  def log(text)
+    puts "#{PREFIX} #{text}"
+  end
+end
+-------------------------------------------------------
+
 ------------------------------------------------------------------------------------------------------------
