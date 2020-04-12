@@ -1936,7 +1936,80 @@ module Taggable
   end
 end
 
+Array.include?(Enumerable)
+[1,2,3].map {|n| n *10}
+
+{ a: 1, b: 2, c: 3 }.map { |k, v| [k, v * 10] }
+
+(1..3).map { |n| n * 10 }
 
 -------------------------------------------------------
+2 <=> 1
+class Tempo
+  include Comparable
 
+  attr_reader :bpm
+
+  def initialize(bpm)
+    @bpm = bpm
+  end
+
+  def <=>(other)
+    if other.is_a?(Tempo)
+      bpm <=> other.bpm
+    else
+      nil
+    end
+  end
+
+  def inspect
+    "#{bpm}bpm"
+  end
+end
+
+class User
+  p self
+  p self.class
+end
+-------------------------------------------------------
+class User
+  p self
+end
+
+module NameChanger
+  def change_name
+    @name = 'アリス'
+  end
+end
+
+class User
+  include NameChanger
+
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+module NameChanger
+  def change_name
+    self.name = 'アリス'
+  end
+end
+
+class User
+  include NameChanger
+
+  attr_accessor :name
+  def initialize(name)
+    @name = name
+  end
+end
+
+module Loggable
+  def log(text)
+    puts "[LOG] #{text}"
+  end
+end
 ------------------------------------------------------------------------------------------------------------
