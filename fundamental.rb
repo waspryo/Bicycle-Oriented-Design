@@ -2114,5 +2114,103 @@ module Loggable
   end
 end
 -------------------------------------------------------
+Math.sqrt(2)
 
+class Calculator
+  include Math
+  def calc_sqrt(n)
+    sqrt(n)
+  end
+end
+
+module AwsomeApi
+  @bace_url = ""
+  @debug_mode = false
+
+  class << self
+    def bace_url=(value)
+      @bace_url = value
+    end
+
+    def bace_url
+      @bace_url
+    end
+
+    def debug_mode=(value)
+    @debug_mode = value
+    end
+
+    def debug_mode
+      @debug_mode
+    end
+  end
+end
+-------------------------------------------------------
+module A
+  def to_s
+  "<A> #{super}"
+  end
+end
+
+module B
+  def to_s
+    "<B> #{super}"
+  end
+end
+
+class Product
+  def to_s
+    "<Product> #{super}"
+  end
+end
+
+class DVD < Product
+  include A
+  include B
+
+  def to_s
+    "<DVD> #{super}"
+  end
+end
+
+DVD.ancestors
+
+module Greeting
+  def hello
+  'hello'
+  end
+end
+
+module Aisatsu
+  include Greeting
+
+  def konnichiwa
+    'こんにちは。'
+  end
+end
+
+class User
+  include Aisatsu
+end
+-------------------------------------------------------
+module A
+  def to_s
+    "<A> #{super}"
+  end
+end
+-------------------------------------------------------
+module A
+  def to_s
+    "<A> #{super}"
+  end
+end
+
+class Product
+  prepend A
+
+  def to_s
+    "<Product> #{super}"
+  end
+end
+------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
