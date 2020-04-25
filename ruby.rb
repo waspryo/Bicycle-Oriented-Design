@@ -819,4 +819,132 @@ numbers.each {|n|
 
   method_1
 
+begin
+   1/ 0
+rescue => e
+  puts "エラークラス: #{e.class}"
+  puts "エラークラス: #{e.message}"
+  puts "バックトレース -----"
+  puts e.backtrace
+  puts "___"
+end
+
+begin
+  1 / 0
+rescue ZeroDivisionError
+  puts "0で徐算しました"
+end
+
+
+begin
+  'abc'.foo
+rescue ZeroDivisionError
+  puts "徐算しました"
+end
+
+begin
+   'abc'.foo
+rescue ZeroDivisionError
+  puts "徐算しました"
+rescue NoMethodError
+  puts "存在しないメソッドが呼び出された"
+end
+
+begin
+  'abc'.foo
+rescue ZeroDivisionError, NoMethodError => e
+ puts "徐算しましたが、存在しないメソッドが呼び出された"
+ puts "エラー: #{e.class} #{e.message}"
+end
+
+begin
+  "abc".foo
+rescue NoMethodError
+  puts "NoMethodErrorです"
+rescue NameError
+  puts "NameErrorです"
+end
+
+begin
+  Foo.new
+rescue NoMethodError
+  puts "NomethodErrorです"
+rescue NameError
+  puts "NameErrorです"
+end
+
+begin
+   1 / 0
+rescue NoMethodError
+  puts 'NoMethodErrorです'
+rescue NameError
+  puts "NameErrorです"
+rescue StandardError
+  puts "その他エラーです"
+end
+
+
+retry_count = 0
+begin
+  puts "処理を開始"
+  1/0
+rescue
+  retry_count += 1
+  if retry_count <= 3
+    puts "retryします (#{retry_count}回目)"
+    retry
+  else
+    puts "retryに失敗しました"
+  end
+end
+
+def currency_of(country)
+  case country
+  when :japan
+    'yen'
+  when :us
+    "dollar"
+  when :india
+    "rupee"
+  else
+    raise "無効な国名です。#{country}"
+  end
+end
+
+currency_of(:japan)
+currency_of(:france)
+
+
+def currency_of(country)
+  case country
+  when :japan
+    'yen'
+  when :us
+    "dollar"
+  when :india
+    "rupee"
+  else
+    raise  ArgumentError,"無効な国名です。#{country}"
+  end
+end
+
+
+currency_of(:france)
+
+
+def convert_heisei_to_data(heisei_text)
+  m = heisei_text.match(/平成(?<jp_year>\d+)年(?<month>\d+)月(?<day>\d+)日/)
+  year = m[:jp_year].to_i + 1988
+  month = m[:month].to_i
+  day = m[:day].to_i
+
+  begin
+    Date.new(year, month, day)
+  rescue ArgumentError
+    nil
+  end
+end
+
+convert_heisei_to_data('平成28年12月31日')
+convert_heisei_to_data('平成28年99月99日')
   ------------------------------------------------------------------------------------------------------------
