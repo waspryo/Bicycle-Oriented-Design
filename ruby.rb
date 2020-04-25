@@ -761,3 +761,62 @@ numbers.each {|n|
   puts n
   cake        = gets.chomp()
   cake_price  = gets.chomp()
+
+  ------------------------------------------------------------------------------------------------------------
+  module Sample
+    class User
+      NAME = 'Alice'.freeze
+
+      def self.hello(name = NAME)
+        "Hell, I am #{name}"
+      end
+    end
+  end
+
+
+  module Greeter
+    def hello
+      'hello'
+    end
+  end
+
+  puts 'Start'
+  module Greeter
+    def hello
+      'hello'
+    end
+  end
+
+  begin
+    greeter = Greeter.new
+  rescue => exception
+    puts '例外が発生したがここまま実行する'
+  end
+
+  puts 'End'
+
+  def method_1
+    puts 'method_1 start'
+    begin
+      method_2
+    rescue => exception
+      puts '例外が発生しました'
+    end
+    puts 'method_1 End'
+  end
+
+  def method_2
+    puts "method_2 start"
+    method_3
+    puts 'method_2 end'
+  end
+
+  def method_3
+  puts 'method_3 start'
+  1 / 0
+  puts 'method_3 end'
+  end
+
+  method_1
+
+  ------------------------------------------------------------------------------------------------------------

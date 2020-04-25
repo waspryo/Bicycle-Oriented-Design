@@ -2212,5 +2212,31 @@ class Product
     "<Product> #{super}"
   end
 end
+
+class Product
+  def name
+    "A great film"
+  end
+end
+
+class Product
+  alias name_original name
+
+  def name
+  "<<#{name_original}>>"
+  end
+end
+
+class Product
+  def name
+    "A great film"
+  end
+end
+
+module NameDecorator
+  def name
+    "<<#{name}>>"
+  end
+end
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
