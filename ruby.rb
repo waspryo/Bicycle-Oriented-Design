@@ -979,4 +979,39 @@ end
 
 currency_of(:italy)
 
+
+file = File.open('some.text', 'w')
+
+begin
+
+file << 'Hello'
+ensure
+  file.close
+end
+
+def to_date(string)
+  begin
+    Date.parse(string) rescue nil
+  end
+end
+
+to_date('2017-01-01')
+to_date('abcaisfn')
+
+
+def fizz_buzz(n)
+  begin
+    if n % 15 == 0
+      'Fizz Buzz'
+    elsif n % 3 == 0
+      'Fizz'
+    elsif n % 5 == 0
+      'Buzz'
+    else
+      n.to_s
+    end
+  rescue => e
+    puts "#{e.class} #{e.message}"
+  end
+end
   ------------------------------------------------------------------------------------------------------------

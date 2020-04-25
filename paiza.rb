@@ -214,24 +214,29 @@
 #   end
 # end
 
-print 'Text?: '
-text = gets.chomp
+# print 'Text?: '
+# text = gets.chomp
+# # print 'Pattern?:'
+# # pattern = gets.chomp
+
+# begin
 # print 'Pattern?:'
 # pattern = gets.chomp
+# regexp = Regexp.new(pattern)
+# rescue RegexpError => e
+#   puts "Invalidn pattern: #{e.message}"
+#   retry
+# end
 
-begin
-print 'Pattern?:'
-pattern = gets.chomp
-regexp = Regexp.new(pattern)
-rescue RegexpError => e
-  puts "Invalidn pattern: #{e.message}"
-  retry
-end
+# matches = text.scan(regexp)
+# if matches .size > 0
+#   puts "Mathced: #{matches.join(',')}"
+# else
+#   puts "Nothing matched"
+# end
 
-matches = text.scan(regexp)
-if matches .size > 0
-  puts "Mathced: #{matches.join(',')}"
-else
-  puts "Nothing matched"
+File.open('some.text', 'w') do |file|
+  file << 'Hello'
+  1 / 0
 end
 
