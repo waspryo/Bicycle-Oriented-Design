@@ -200,16 +200,38 @@
 #  puts "その他エラーです"
 # end
 
-retry_count = 0
+# retry_count = 0
+# begin
+#   puts "処理を開始"
+#   1/0
+# rescue
+#   retry_count += 1
+#   if retry_count <= 3
+#     puts "retryします (#{retry_count}回目)"
+#     retry
+#   else
+#     puts "retryに失敗しました"
+#   end
+# end
+
+print 'Text?: '
+text = gets.chomp
+# print 'Pattern?:'
+# pattern = gets.chomp
+
 begin
-  puts "処理を開始"
-  1/0
-rescue
-  retry_count += 1
-  if retry_count <= 3
-    puts "retryします (#{retry_count}回目)"
-    retry
-  else
-    puts "retryに失敗しました"
-  end
+print 'Pattern?:'
+pattern = gets.chomp
+regexp = Regexp.new(pattern)
+rescue RegexpError => e
+  puts "Invalidn pattern: #{e.message}"
+  retry
 end
+
+matches = text.scan(regexp)
+if matches .size > 0
+  puts "Mathced: #{matches.join(',')}"
+else
+  puts "Nothing matched"
+end
+

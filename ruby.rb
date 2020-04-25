@@ -947,4 +947,36 @@ end
 
 convert_heisei_to_data('平成28年12月31日')
 convert_heisei_to_data('平成28年99月99日')
+
+
+def convert_heisei_to_data(heisei_text)
+  m = heisei_text.match(/平成(?<jp_year>\d+)年(?<month>\d+)月(?<day>\d+)日/)
+  year = m[:jp_year].to_i + 1988
+  month = m[:month].to_i
+  day = m[:day].to_i
+
+  if Date.valid_date?(year, month,day)
+    Date.new(year, month, day)
+  end
+end
+
+convert_heisei_to_data('平成28年12月31日')
+convert_heisei_to_data('平成28年99月99日')
+
+
+def currency_of(country)
+  case country
+  when :japan
+    'yen'
+  when :us
+    'dollar'
+  when :india
+    'rupee'
+  else
+    raise ArgumentError, "無効な国です、#{country}"
+  end
+end
+
+currency_of(:italy)
+
   ------------------------------------------------------------------------------------------------------------
