@@ -879,13 +879,27 @@ class User
   end
 end
 -------------------------------------------------------
-class User
-  def initialize(name)
+class Animal
+  def initialize(name, age)
     @name = name
+    @age = age
+  end
+end
+
+class Dog < Animal
+  def initialize(name, age, breed)
+    super(name, age)
+    @breed = breed
   end
 
-  def hello
-    "Hello, I am #{@name}"
+  def info
+    puts "名前は#{@name}です"
+    puts "年齢は#{@age}です"
+  end
+
+
+  def breed
+    puts "犬種は #{@breed}です"
   end
 end
 -------------------------------------------------------

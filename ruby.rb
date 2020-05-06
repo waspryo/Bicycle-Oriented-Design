@@ -1014,4 +1014,19 @@ def fizz_buzz(n)
     puts "#{e.class} #{e.message}"
   end
 end
+
+a = {:id=>12, :name=>"株式会社〇〇", :url=>"https://test.com", :industry=>102, :uuid=>"em-71a20fe9-c494-47c9-92df-744ef538e0c7"}
+------------------------------------------------------------------------------------------------------------
+class Animal
+  attr_accessor :name, :age
+  def initialize(name, age)
+    @name = animal
+    @age = age
+  end
+
+  def hello
+    puts "私の犬の名前は#{@name}で、年齢は#{@age}です"
+  end
+
+end
   ------------------------------------------------------------------------------------------------------------
