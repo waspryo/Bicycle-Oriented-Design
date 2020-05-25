@@ -1030,7 +1030,258 @@ class Animal
 
 end
 ------------------------------------------------------------------------------------------------------------
-def some_method
+def fizz_buzz(n)
+  if n % 15 == 0
+    'Fizz Buzz'
+  elsif n % 3 == 0
+    'Fizz'
+  elsif n % 5  == 0
+    'Buzz'
+  else
+    n.to_s
+  end
+rescue => e
+  puts "[LOG] エラーが発生しました: #{e.class} #{e.message}"
+  raise
+end
+
+fizz_buzz(nil)
+
+
+animals = ["Cat", "Dog", "Bird"]
+border = "------------"
+animals.each {|animal|
+  puts border
+  puts animal
+}
+
+class NoCountryError < StandardError
+  attr_reader :country
+
+  def initialize(message, country)
+    @country = country
+  end
+end
+
+def currency_of(country)
+  case country
+  when :japan
+    'yen'
+  when :us
+    'dollar'
+  when :india
+    'rupee'
+  else
+    raise NoCountryError.new('無効な国名です。', country)
+  end
+end
+
+begin
+  currency_of(:italy)
+rescue NoCountryError => e
+  puts e.message
+  puts e.country
+end
+------------------------------------------------------------------------------------------------------------
+synth = WordSynth.new
+synth.add_effect(Effects.echo(2))
+synth.play("Ruby is fun!")
+
+class WordSynth
+  def initialize
+    @effects = []
+  end
+
+  def add_effect(effect)
+    @effects << effect
+  end
+
+
+  def play(original_word)
+    @effects.inject(original_word) do |words, effect|
+      effect.call(words)
+    end
+  end
+end
+
+def greeting
+  puts "hello"
+  yield
+  puts "nice"
+end
+
+greeting do
+  puts 'こんにちは'
+end
+
+------------------------------------------------------------------------------------------------------------
+
+
+def greeting
+  puts 'おはよう'
+  yield
+  yield
+  puts 'こんばんは'
+end
+
+greeting do
+  puts 'こんにちは'
+end
+
+def greeting
+  puts 'おはよう'
+
+  if block_given?
+    yield
+  end
+  puts 'こんにちは'
+
+  greeting
+end
+
+greeting do
+  puts 'こんにちは'
+end
+
+def greeting
+  puts 'おはよう'
+
+  text = yield 'こんにちは'
+
+  puts text
+  puts "こんばんは"
+end
+
+greeting do |text|
+  text * 2
+end
+
+def greeting(&block)
+  puts 'mornig'
+
+  text = block.call('こんにちは')
+  puts text
+end
+
+greeting do |text|
+  text * 2
+end
+------------------------------------------------------------------------------------------------------------
+
+def greeting_ja(&block)
+  texts = ['おはよう', 'こんにちは', 'こんばんは']
+  greeting_common(texts, &block)
+end
+
+def greeting_en(&block)
+  texts = ['good mornig', 'hello', 'good evening']
+  greeting_common(texts, &block)
+end
+
+def greeting_common(texts, &block)
+  puts texts[0]
+
+  puts block.call(texts[1])
+  puts texts[2]
+end
+
+greeting_ja do |text|
+  text * 2
+end
+
+a = [
+   { 1   => "spirit" },
+   { 2         => "spirit_teens" },
+   { 8         => "emerald_post" },
+ ]
+ platform_number = 8
+
+a.inject([]) { |res, row|
+  if ((platform_number & row.keys.first) == row.keys.first)
+    res << row[row.keys.first]
+    puts (platform_number & row.keys.first).inspect, 'aaaaaaaa'
+    puts row.inspect, 'bbbbbbbbb'
+    puts row.keys.inspect, 'ccccccccc'
+    puts row.keys.first.inspect, 'ddddddddd'
+    puts row[row.keys.first].inspect, 'eeeeeeeeee'
+    puts res.inspect, 'ffffffffff'
+  end
+  res
+}.join(',')
+
+num = 2
+num1 = 1
+------------------------------------------------------------------------------------------------------------
+class Strawberry
+
+  def cake
+    puts 'これはいちごのケーキです'
+  end
+
+  def self.strawberry_only
+    puts 'いちごそのまま'
+  end
+
+  def self.create
+    self.new(self.cake)
+  end
 
 end
-  ------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+def greeting(&block)
+  puts 'mornig'
+
+  text = block.call('afternoon')
+  puts text
+  puts 'evening'
+end
+
+greeting do |text|
+  text * 2
+end
+
+
+def greeting(&block)
+  puts 'mornig'
+
+  unless block.nil?
+    text = block.call('hello')
+    puts text
+  end
+  puts 'evening'
+end
+
+def greeting(&block)
+  puts 'mornig'
+
+  if block_given?
+    text = yield 'hello'
+    puts text
+  end
+  puts 'evening'
+end
+
+def greeting_ja(&block)
+  texts = ["おはよう", 'こんにちは','こんばんは']
+  greeting_common(texts, &block)
+end
+
+def greeting_en(&block)
+  texts = ['good morning', 'hello', 'good evening']
+
+  greeting_common(texts, &block)
+end
+
+def greeting_common(texts, &block)
+  puts texts[0]
+  puts block.call(texts[1])
+  puts texts[2]
+end
+
+greeting_ja do |text|
+  text * 2
+end
+
+greeting_en do |text|
+  text.upcase
+end
