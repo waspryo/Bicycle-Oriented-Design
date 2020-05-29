@@ -1285,3 +1285,4 @@ end
 greeting_en do |text|
   text.upcase
 end
+
