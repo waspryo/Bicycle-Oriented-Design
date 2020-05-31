@@ -1286,3 +1286,146 @@ greeting_en do |text|
   text.upcase
 end
 
+def greeting(&block)
+  puts 'おはよう'
+  text =
+    if block.arity == 1
+      yield 'こんにちは'
+    elsif block.arity == 2
+      yield 'こんに', 'ちは'
+    end
+    puts text
+    puts 'こんばんは'
+end
+
+hello_proc = Proc.new do
+  'Hello'
+end
+
+helloproc = Proc.new{'Hello!'}
+hello_proc.call
+
+add_proc = Proc.new {|a,b| a + b}
+
+add_proc = Proc.new{ |a= 0, b = 0| a + b }
+add_proc.call
+add_proc.call(10)
+
+def greeting(&block)
+  puts 'おはよう'
+  text = block.call('こんにちは')
+  puts text
+  puts 'こんばんは'
+end
+
+def greeting(&block)
+  puts block.class
+
+  puts 'おはよう'
+  text = block.call('こんにちは')
+  puts text
+  puts 'こんばんは'
+end
+
+greeting do |text|
+  text * 2
+end
+
+def greeting(&block)
+  puts 'おはよう'
+  text = block.call('こんにちは')
+  puts text
+  puts 'こんばんは'
+end
+
+repeat_proc = Proc.new{ |text| text * 2 }
+greeting(&repeat_proc)
+
+def greeting(arrange_proc)
+  puts 'おはよう'
+  text = arrange_proc.call('こんにちは')
+  puts text
+  puts 'こんにちは'
+end
+
+repeat_proc = Proc.new{|text| text * 2}
+
+メソッドが受け取れるブロックの数は1つだが、Procオブジェクトは文字列や数値と同じ
+「ただのオブジェクト」である、引数として渡すには制限がない
+
+# 三種類のProcオブジェクトを受け取り、それぞれの挨拶を文字列に適用するgreetingメソッド
+shuffle_proc = Proc.new{|text| text.chars.shuffle.join}
+repeat_proc = Proc.new{ |text| text*2 }
+question_proc = Proc.new{|text| "#{text}?"}
+
+def greeting(proc_1,proc_2,proc_3)
+  puts proc_1.call('おはよう')
+  puts proc_2.call('こんにちは')
+  puts proc_3.call('こんばんは')
+end
+
+greeting(shuffle_proc ,repeat_proc ,question_proc )
+
+Proc.new{|a,b| a + b}
+proc{|a,b| a + b}
+
+->(a,b) {a + b}
+ラムダリテラル(アロー演算子とも呼ばれる)
+->がラムダを作成するための記号
+その後にくる(a,b)は引数のリスト、
+{}は引数を使って実行する処理の内容
+-> a, b {a + b}
+引数がなけれな全て省略できる
+-> {'Hello!'}
+lambda {|a,b| a + b}
+
+->(a,b) do
+
+end
+
+add_proc = Proc.new{|a,b| a + b}
+add_proc.class
+add_proc.lambda?
+
+add_lambda = ->(a,b){a + b}
+add_lambda.class
+add_lambda.lambda?
+
+['uber', 'fuck','daichi', 'shit'].map{|s| s.upcase}
+['uber', 'fuck','daichi', 'shit'].map(&:upcase)
+
+def self.loud(level)
+  ->(words) do
+    words.split('').map {|word| word.upcase + '!' * level}.join('')
+  end
+end
+
+def judge(age)
+  adult = Proc.new{|n| n > 20}
+  child = Proc.new{|n| n < 20}
+
+  case age
+  when adult
+    '大人です'
+  when child
+    '子供です'
+  else
+    '二十歳です'
+  end
+end
+
+def greeting(country)
+  puts 'Greetiung start'
+  return 'countryを入力してください' if country.nil?
+
+  if country  == 'japan'
+    puts 'japan'
+    'こんにちは'
+  else
+    puts 'other'
+    'hello'
+  end
+end
+
+'#043v78'.scan(/\w\w/).tap {|rgb| p rgb}.map(&:hex)
+'#043v78'.scan(/\w\w/).tap {|rgb| p rgb}.map(&:hex)
